@@ -13,16 +13,20 @@ RSpec.describe Product, type: :model do
   end
 
   context "Custom Validation" do
+    let!(:product) { create(:product, description: '<h1>Hello World</h1>') }
+    let!(:new_product) { build(:product, description: 'Ru') }
+
     it "Strips HTML from description" do
-      c = Category.create!
-      p = Product.create! title: 'Book', description: '<h1>Hello World</h1>', price: 10, category: c
-      expect(p.description).to eq 'Hello World'
+      expect(product.description).to eq 'Hello World'
     end
 
     it "Make title lowcase" do
-      p = create(:product, title: 'HeLlO', category: create(:category))
-      p.lowcase_title
-      expect(p.title).to eq 'hello'
+      expect(product.title).to eq 'ruby'
+    end
+
+    it "Description must longer than title" do
+      new_product.validate
+      expect(new_product.errors.messages).to include(description: ['can\'t be shorter than title'])
     end
   end
 

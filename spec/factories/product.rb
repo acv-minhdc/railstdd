@@ -3,9 +3,6 @@ FactoryBot.define do
     title 'Ruby'
     description 'Ruby Learning'
     price 20
-  end
-
-  factory :category do
-    
+    category { create(:category) }
   end
 end
