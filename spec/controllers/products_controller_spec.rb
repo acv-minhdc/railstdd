@@ -55,6 +55,15 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product).equal? p).to eq false
       expect(assigns(:product).price).to eq p.price
     end
+
+    # it 'failure' do
+    #   p = products.first
+    #   put :update, params: {id: products.first.id, product: { title: 'Changed title', description: '' } }
+    #   expect(assigns(:product).equal? p).to eq true
+    #   expect(assigns(:product).title).to eq p.title
+    #   expect(response).to render_template :new
+    # end
+
   end
   describe '#destroy' do
     it 'success' do
